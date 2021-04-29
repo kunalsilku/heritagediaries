@@ -2606,7 +2606,7 @@
 	border: none;
 }
 
-.blog-title
+h1.blog-title
 {
     text-align: center;
     text-decoration-line: underline;
@@ -2615,7 +2615,7 @@
     font-weight: 1000;
 
 }
-.blog-heading {
+h3.blog-heading {
     color: black;
     font-size: 18px;
     font-weight: 700;
