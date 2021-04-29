@@ -342,7 +342,7 @@
          padding: 30px 15px;
          font-weight: 600;
     }
-     nav.navbar .navbar-brand{
+    nav.navbar .navbar-brand{
          margin-top: 0;
     }
      nav.navbar .navbar-brand{
@@ -402,7 +402,7 @@
          position: relative;
          top: -2px;
     }
-     nav.navbar .navbar-brand img.logo{
+    nav.navbar .navbar-brand img.logo{
          width: 160px;
     }
      .attr-nav > ul > li > a{
@@ -535,7 +535,7 @@
          border-bottom: solid 1px #303030 !important;
          border-right: solid 1px #303030 !important;
     }
-     nav.navbar.navbar-inverse li.dropdown ul.dropdown-menu > li > a{
+   nav.navbar.navbar-inverse li.dropdown ul.dropdown-menu > li > a{
          border-bottom: solid 1px #303030;
     }
      nav.navbar.navbar-inverse ul.dropdown-menu.megamenu-content .col-menu{
@@ -561,7 +561,7 @@
          color: #eee;
          background-color: #222 !important;
     }
-     nav.navbar.navbar-inverse .navbar-nav > li > a{
+    nav.navbar.navbar-inverse .navbar-nav > li > a{
          border-top: solid 1px #303030;
          border-bottom: solid 1px #303030;
     }
@@ -591,10 +591,7 @@
      nav.navbar.navbar-inverse.navbar-mobile ul.nav{
          border-top: solid 1px #222;
     }
-    nav.navbar.bootsnav ul.navbar-nav li.dropdown ul.dropdown-menu li a{
-     background-color: #222;
-}
-
+    
 }
  .arrow::before{
      font-family: 'FontAwesome';
@@ -615,6 +612,7 @@
      display: block;
 	 padding: 6px 25px;
      color:white;
+     background: black;
 }
 
  nav.navbar.bootsnav ul.navbar-nav li.dropdown ul.dropdown-menu li a:hover{
