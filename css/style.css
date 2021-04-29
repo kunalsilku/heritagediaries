@@ -141,6 +141,33 @@
  .bootstrap-select .dropdown-toggle:focus{
      box-shadow: none !important 
 }
+
+/*---------------------------- preloader area ----------------------------*/
+
+.loader_bg {
+     position: fixed;
+     z-index: 9999999;
+     background: #fff;
+     width: 100%;
+     height: 100%;
+}
+
+.loader {
+     height: 100%;
+     width: 100%;
+     position: absolute;
+     left: 0;
+     top: 0;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+.loader img {
+     width: 280px;
+}
+
+
 /*------------------------------------------------------------------ LOADER -------------------------------------------------------------------*/
  #back-to-top {
      position: fixed;
@@ -160,6 +187,8 @@
      transition: opacity 0.2s ease-out;
      font-size: 28px;
 }
+
+
 /*------------------------------------------------------------------ HEADER -------------------------------------------------------------------*/
  .main-top{
      background: #000000;
