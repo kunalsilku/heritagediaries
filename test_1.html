@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    
+    
+  $('#SpaceAccommodation').change(function () {
+    /*var selectedText = $(this).find("option:selected").text();*/
+    var selectedText = $(this).val();
+    console.log(selectedText);
+    $(".test").text(selectedText);   
+        
+});
+
+});
+</script>
+</head>
+<body>
+
+<select class="form-control" id="SpaceAccommodation" name="YogaSpaceAccommodation">
+    <option selected="selected" value="0">1-4</option>
+    <option value="1">5-9</option>
+    <option value="2">10-15</option>
+    <option value="3">16-20</option>
+    <option value="4">20+</option>
+</select>
+<div class="test"></div>
+
+
+
+
+</body>
+</html>

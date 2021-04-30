@@ -17,6 +17,14 @@
 		$('.loader_bg').hide();
 	});
 
+	window.onclick = function(event) 
+    {
+      if (event.target.matches('.selectpicker'))
+       {
+        alert("selectpicker clicked");
+       }
+   }
+
 	/* ..............................................
 	   Fixed Menu
 	   ................................................. */

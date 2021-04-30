@@ -7,196 +7,180 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 
 });
 
+$(document).ready(function()
+{
+    $('#basic').change(function () {
+        /*var selectedText = $(this).find("option:selected").text();*/
+        var selectedValue = $(this).val();
 
-(function (global) {
+        Sort_Products_GridView(selectedValue);
+        Sort_Products_ListView(selectedValue);
 
-var dc = {};
-
-var homeHtml = "snippets/HomeSnippet.html";
-var projectsHtml = "snippets/ProjectsSnippet.html";
-var aboutHtml = "snippets/AboutSnippet.html";
-var awardsHtml = "snippets/AwardsSnippet.html";
-
-
-// Convenience function for inserting innerHTML for 'select'
-var insertHtml = function (selector, html) {
-  var targetElem = document.querySelector(selector);
-  targetElem.innerHTML = html;
-};
-
-// Show loading icon inside element identified by 'selector'.
-var showLoading = function (selector) {
-  var html = "<div class='text-center'>";
-  html += "<img src='images/loading.gif'></div>";
-  insertHtml(selector, html);
-};
-
-/*
-// Remove the class 'active' from home/About/Awards and switch to Projects button
-var switchProjectsToActive = function () {
-  // Remove 'active' from home button
-  var classes = document.querySelector("#navHomeButton").className;
-  classes = classes.replace(new RegExp("active", "g"), "");
-  document.querySelector("#navHomeButton").className = classes;
-
-  // Remove 'active' from About button
-  classes = document.querySelector("#navAboutButton").className;
-  classes = classes.replace(new RegExp("active", "g"), "");
-  document.querySelector("#navAboutButton").className = classes;
-
-  // Remove 'active' from Awards button
-  classes = document.querySelector("#navAwardsButton").className;
-  classes = classes.replace(new RegExp("active", "g"), "");
-  document.querySelector("#navAwardsButton").className = classes;
-
-  // Add 'active' to Projects button if not already there
-  classes = document.querySelector("#navProjectsButton").className;
-  if (classes.indexOf("active") == -1) {
-    classes += " active";
-    document.querySelector("#navProjectsButton").className = classes;
-  }
-};
-
-
-  // Remove the class 'active' from home/Projects/Awards and switch to About button
-var switchAboutToActive = function () {
-  // Remove 'active' from home button
-  var classes = document.querySelector("#navHomeButton").className;
-  classes = classes.replace(new RegExp("active", "g"), "");
-  document.querySelector("#navHomeButton").className = classes;
-
-  // Remove 'active' from Projects button
-  classes = document.querySelector("#navProjectsButton").className;
-  classes = classes.replace(new RegExp("active", "g"), "");
-  document.querySelector("#navProjectsButton").className = classes;
-
-  // Remove 'active' from Awards button
-  classes = document.querySelector("#navAwardsButton").className;
-  classes = classes.replace(new RegExp("active", "g"), "");
-  document.querySelector("#navAwardsButton").className = classes;
-
-  // Add 'active' to About button if not already there
-  classes = document.querySelector("#navAboutButton").className;
-  if (classes.indexOf("active") == -1) {
-    classes += " active";
-    document.querySelector("#navAboutButton").className = classes;
-  }
-};
-
-
-  // Remove the class 'active' from home/Projects/About and switch to Awards button
-var switchAwardsToActive = function () {
-  // Remove 'active' from home button
-  var classes = document.querySelector("#navHomeButton").className;
-  classes = classes.replace(new RegExp("active", "g"), "");
-  document.querySelector("#navHomeButton").className = classes;
-
-  // Remove 'active' from Projects button
-  classes = document.querySelector("#navProjectsButton").className;
-  classes = classes.replace(new RegExp("active", "g"), "");
-  document.querySelector("#navProjectsButton").className = classes;
-
-  // Remove 'active' from About button
-  classes = document.querySelector("#navAboutButton").className;
-  classes = classes.replace(new RegExp("active", "g"), "");
-  document.querySelector("#navAboutButton").className = classes;
-
-  // Add 'active' to Awards button if not already there
-  classes = document.querySelector("#navAwardsButton").className;
-  if (classes.indexOf("active") == -1) {
-    classes += " active";
-    document.querySelector("#navAwardsButton").className = classes;
-  }
-};
-
-*/
-
-/*
-// On page load (before images or CSS)
-document.addEventListener("DOMContentLoaded", function (event) {
-
-// On first load, show home view
-showLoading("#dynamic-content-1");
-$ajaxUtils.sendGetRequest(
-  homeHtml,
-  function (responseText) {
-  	
-    document.querySelector("#dynamic-content")
-      .innerHTML = responseText;
-      
-  },
-  false);
+            
+    });
 });
 
-*/
-var myJson;
-document.addEventListener("DOMContentLoaded", function (event) {
-
-// On first load, show home view
-alert("hello");
+function Sort_Products_GridView(value)
+{
+	
+/*alert("running grid view");*/
 var xmlhttp = new XMLHttpRequest();
 var i;
+var j;
+var temp;
+var item_2='';
+var myJson;
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    myJson = JSON.parse(this.responseText);
+
+    /*************** Sorting Routine ******************************/
+    for (i=0; i< myJson.Products.length; i++)
+        for (j=0; j< myJson.Products.length; j++)
+    {
+        var i_num = parseInt(myJson.Products[i].new_cost);
+        var j_num = parseInt(myJson.Products[j].new_cost);
+        
+        if(value=='2')
+        {
+	        if(i_num > j_num)
+	        {
+	            
+	            temp = myJson.Products[i];
+	            myJson.Products[i] = myJson.Products[j];
+	            myJson.Products[j] = temp;
+	        }
+    	}
+    	if(value=='3')
+        {
+	        if(i_num < j_num)
+	        {
+	            
+	            temp = myJson.Products[i];
+	            myJson.Products[i] = myJson.Products[j];
+	            myJson.Products[j] = temp;
+	        }
+    	}
+
+        
+    }
+    /*****************************************************************/
+
+    for (i=0; i< myJson.Products.length; i++)
+    {
+        item_2 += '<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">'+
+                '<div class="products-single fix">'+
+                    '<div class="box-img-hover">'+
+                        '<div class="type-lb">'+
+                            '<p class="'+ myJson.Products[i].sale_new +'">'+myJson.Products[i].sale_new+'</p>'+
+                        '</div>'+
+                    '<img src="'+ myJson.Products[i].image_url +'" class="img-fluid" alt="Image">'+
+                    '<div class="mask-icon">'+
+                        '<ul>'+
+                            '<li><a href="shop-detail.html" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>'+
+                            '<li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>'+
+                            '<li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>'+
+                        '</ul>'+
+                        '<a class="cart" href="#">Add to Cart</a>'+
+                    '</div>'+
+                    '</div>'+
+                    '<div class="why-text cost-cut">'+
+                        '<h4>'+myJson.Products[i].Product+'</h4>'+
+                        '<h5> <del>&#8377 '+myJson.Products[i].old_cost+'</del> &#8377 '+ myJson.Products[i].new_cost+'</h5>'+
+                    '</div>'+
+                '</div>'+
+            '</div>';
+    }                                            
+    document.querySelector("#dyn_1").innerHTML = item_2;
+  }
+};
+xmlhttp.open("GET", "json/Product_json.txt", true);
+xmlhttp.send();
+                                         
+} 
+
+
+function Sort_Products_ListView(value)
+{
+var xmlhttp = new XMLHttpRequest();
+var i;
+var j;
+var temp;
 var item='';
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
-  	console.log("down")
-    myJson = JSON.parse(this.responseText);
-    console.log(myJson);
-    global.$gJson = myJson;
-    console.log("up");
-}}
+    var myJson = JSON.parse(this.responseText);
 
-xmlhttp.open("GET", "Product_json.txt", true);
-xmlhttp.send();
+    /*************** Sorting Routine ******************************/
+    for (i=0; i< myJson.Products.length; i++)
+        for (j=0; j< myJson.Products.length; j++)
+    {
+        var i_num = parseInt(myJson.Products[i].new_cost);
+        var j_num = parseInt(myJson.Products[j].new_cost);
+        
+        if(value=='2')
+        {
+	        if(i_num > j_num)
+	        {
+	            
+	            temp = myJson.Products[i];
+	            myJson.Products[i] = myJson.Products[j];
+	            myJson.Products[j] = temp;
+	        }
+    	}
+    	if(value=='3')
+        {
+	        if(i_num < j_num)
+	        {
+	            
+	            temp = myJson.Products[i];
+	            myJson.Products[i] = myJson.Products[j];
+	            myJson.Products[j] = temp;
+	        }
+    	}
 
-});
+        
+    }
+    /*****************************************************************/
 
-/*
-// Load the Projects view
-dc.loadProjectsView = function () {
-switchProjectsToActive();
-showLoading("#dynamic-content");
-$ajaxUtils.sendGetRequest(
-  projectsHtml,
-  function (responseText) {
-    document.querySelector("#dynamic-content")
-      .innerHTML = responseText;
-  },
-  false);
+    
+    for (i=0; i< myJson.Products.length; i++)
+    {
+        item += '<div class="list-view-box">'+
+            '<div class="row" >'+                               
+                '<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">'+
+                    '<div class="products-single fix">'+
+                        '<div class="box-img-hover">'+
+                            '<div class="type-lb">'+
+                                '<p class="'+myJson.Products[i].sale_new+'">'+myJson.Products[i].sale_new+'</p>'+
+                            '</div>'+
+                        '<img src="'+myJson.Products[i].image_url+'" class="img-fluid" alt="Image">'+
+                        '<div class="mask-icon">'+
+                            '<ul>'+
+                                '<li><a href="shop-detail.html" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>'+
+                                '<li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>'+
+                                '<li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>'+
+                            '</ul>'+
+                        '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">'+
+                    '<div class="why-text full-width ">'+
+                        '<h4 class="text-center">'+myJson.Products[i].Product+'</h4>'+
+                        '<h5> <del>&#8377 '+myJson.Products[i].old_cost+'</del> &#8377 '+ myJson.Products[i].new_cost+'</h5>'+
+                        '<p>'+myJson.Products[i].small_brief+'</p>'+
+                        '<a class="btn hvr-hover" href="#">Add to Cart</a>'+
+                        '<a class="btn hvr-hover" href="blog.html">Read Blog</a>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+        '</div>';
+    }                                            
+    document.querySelector("#list-view").innerHTML = item;
+    
+  }
 };
-
-
-// Load the About view
-dc.loadAboutView = function () {
-switchAboutToActive();
-showLoading("#dynamic-content");
-$ajaxUtils.sendGetRequest(
-  aboutHtml,
-  function (responseText) {
-    document.querySelector("#dynamic-content")
-      .innerHTML = responseText;
-  },
-  false);
-};
-
-
-// Load the Awards view
-dc.loadAwardsView = function () {
-switchAwardsToActive();
-showLoading("#dynamic-content"); 
-$ajaxUtils.sendGetRequest(
-  awardsHtml,
-  function (responseText) {
-    document.querySelector("#dynamic-content")
-      .innerHTML = responseText;
-  },
-  false);
-};
-  
-*/
-
-global.$dc = dc;
-console.log("hello");
-console.log(global.$gJson);
-
-})(window);
+xmlhttp.open("GET", "json/Product_json.txt", true);
+xmlhttp.send();   
+}
