@@ -1,0 +1,43 @@
+﻿{
+    "Products": [
+        {
+            "state": "Andhra",
+            "state code": "1",
+            "Type": "Handicraft",
+            "Type_Code": "1",
+            "Product": "prod 1",
+            "Product_Code": "PDR03",
+            "image_url": "images/Products/in_1.jpg",
+            "sale_new": "sale",
+            "old_cost": "2000",
+            "new_cost": "1800",
+            "small_brief": "Integer tincidunt aliquet nibh vitae dictum. In turpis sapien, imperdiet quis magna nec, iaculis ultrices ante. Integer vitae suscipit nisi. Morbi dignissim risus sit amet orci porta, eget aliquam purus"
+        },
+        {
+            "state": "UP",
+            "state code": "15",
+            "Type": "Handicraft",
+            "Type_Code": "1",
+            "Product": "prod 567",
+            "Product_Code": "PDR 78",
+            "image_url": "images/Products/in_4.jpg",
+            "sale_new": "new",
+            "old_cost": "5000",
+            "new_cost": "4500",
+            "small_brief": "Integer tincidunt aliquet nibh vitae dictum. In turpis sapien, imperdiet quis magna nec, iaculis ultrices ante. Integer vitae suscipit nisi. Morbi dignissim risus sit amet orci porta, eget aliquam purus"
+        },
+        {
+            "state": "Bihar",
+            "state code": "10",
+            "Type": "Agriculture",
+            "Type_Code": "2",
+            "Product": "ag prod",
+            "Product_Code": "PDR 890",
+            "image_url": "images/Products/in_7.jpg",
+            "sale_new": "new",
+            "old_cost": "500",
+            "new_cost": "470",
+            "small_brief": "Integer tincidunt aliquet nibh vitae dictum. In turpis sapien, imperdiet quis magna nec, iaculis ultrices ante. Integer vitae suscipit nisi. Morbi dignissim risus sit amet orci porta, eget aliquam purus"
+        }
+    ]
+}

@@ -274,14 +274,23 @@
  .our-link{
      float: left;
 }
+
+
  .our-link ul li{
      display: inline-block;
-     border-right: 1px solid #ffffff;
+     /*border-right: 1px solid #ffffff;*/
      padding: 0px 10px;
      line-height: 14px;
 }
+
  .our-link ul{
      line-height: 30px;
+}
+.our-link ul li {
+     color: #ffffff;
+     font-weight: 700;
+     text-transform: uppercase;
+     font-size: 14px;
 }
  .our-link ul li a{
      color: #ffffff;
@@ -292,9 +301,32 @@
  .our-link ul li a:hover{
      color: #b0b435;
 }
+
+
  .our-link ul li:last-child{
      border: none;
 }
+
+
+.login-link{
+     float: right;
+}
+
+.login-link p{
+     line-height: 30px;
+}
+ .login-link p a{
+     color: #ffffff;
+     font-weight: 700;
+     text-transform: uppercase;
+     font-size: 14px;
+}
+ .login-link p a:hover{
+     color: #b0b435;
+}
+ 
+
+
 .login-box{
     float: right;
     width: 120px;
@@ -998,6 +1030,20 @@
 	 background: #b0b435;
 	 color: #ffffff;
      font-weight: 600;
+}
+
+.why-text.cost-cut h4 {
+     font-size: 16px;
+     font-weight: 700;
+     padding-bottom: 15px;
+}
+ .why-text.cost-cut h5 del{
+     font-size: 13px;
+     color: #666;
+}
+ .why-text.cost-cut h5{
+     color: #000000;
+     font-weight: 700;
 }
  .mask-icon{
      width: 100%;
@@ -2651,7 +2697,37 @@ h3.blog-heading {
 }
 
 
+.pagination {
+  justify-content: center;
+}
 
+.pagination a {
+  color: white;
+  background-color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+}
+
+.pagination a.active {
+  /*background-color: #4CAF50;*/
+  background-color: #b0b435;
+  color: black;
+  border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {background-color: #b0b435;}
+
+.pagination a:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
 
 
 

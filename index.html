@@ -47,7 +47,8 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <!--
 					<div class="custom-select-box">
                         <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
 							<option>&#8377; Rupee</option>
@@ -55,9 +56,11 @@
 							<option>&#8364; EUR</option>
 						</select>
                     </div>
+                -->
                     <div class="right-phone-box">
                         <p>Call US :- <a href="#"> +91 9910107785</a></p>
                     </div>
+                    <!--
                     <div class="our-link">
                         <ul>
                             <li><a href="index.html"><i class="fa fa-user s_color"></i> My Account</a></li>
@@ -65,14 +68,22 @@
                             <li><a href="contact-us.html"><i class="fas fa-headset"></i> Contact Us</a></li>
                         </ul>
                     </div>
+                    -->
+                    <div class="our-link">
+                        <ul>
+                            <li id="disp1" class=""><i class="fa s_color"></i> Please Sign In</li>
+                            <li id="disp2" class="d-none"><i class="fa s_color "></i> Welcome</li>
+                            <li id="disp3" class="d-none"><a href="contact-us.html"><i class="fas fa-user"></i> Kunal Silku</a></li>
+                        </ul>
+                    </div>
+                    
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="login-box">
-						<select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">
-							<option>Register Here</option>
-							<option>Sign In</option>
-						</select>
-					</div>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">                    
+                    <div class="login-link">
+                        <p id="log1" class=""><a href="login.html"><i class="fa fa-user s_color"></i> Register / Sign In</a></p>
+                        <p id="log2" class="d-none"><a href="login.html"><i class="fa fa-user s_color"></i> Logout</a></p>
+                    </div>
+
                     <div class="text-slid-box">
                         <div id="offer-box" class="carouselTicker">
                             <ul class="offer-box">
@@ -207,6 +218,7 @@
     </div>
     <!-- End Top Search -->
 
+           
     <!-- Start Slider -->
     <div id="slides-shop" class="cover-slides">
         <ul class="slides-container">
@@ -280,23 +292,23 @@
         </div>
     </div>
     <!-- End Categories -->
-	
-	<div class="box-add-products">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-md-6 col-sm-12">
-					<div class="offer-box-products">
-						<img class="img-fluid" src="images/add-img-01.jpg" alt="" />
-					</div>
-				</div>
-				<div class="col-lg-6 col-md-6 col-sm-12">
-					<div class="offer-box-products">
-						<img class="img-fluid" src="images/add-img-02.jpg" alt="" />
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    
+    <div class="box-add-products">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="offer-box-products">
+                        <img class="img-fluid" src="images/add-img-01.jpg" alt="" />
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="offer-box-products">
+                        <img class="img-fluid" src="images/add-img-02.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Start Products  -->
     <div class="products-box">
@@ -421,6 +433,8 @@
     <!-- Start Blog  -->
     <div class="latest-blog">
         <div class="container">
+<div id="dynamic-content">
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="title-all text-center">
@@ -448,6 +462,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-6 col-lg-4 col-xl-4">
                     <div class="blog-box">
                         <div class="blog-img">
@@ -466,6 +481,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-6 col-lg-4 col-xl-4">
                     <div class="blog-box">
                         <div class="blog-img">
@@ -474,7 +490,7 @@
                         <div class="blog-content">
                             <div class="title-blog">
                                 <h3>Bihar Sikki Grass Work</h3>
-                                <p>Sikki grass work is created with a golden fiber derived from drying the Sikki grass and cutting off its flower head. This special grass is indigenous to Uttar Pradesh and Bihar, where the ancient practice of making Sikki items had been passed down through generations. </p>
+                                <p>Sikki grass work is created with a golden fiber derived from drying the Sikki grass and cutting off its flower head. This special grass is indigenous to the region, where the ancient practice had been passed down through generations. </p>
                             </div>
                             <ul class="option-blog">
                                 <li><a href="#"><i class="far fa-heart"></i></a></li>
@@ -485,9 +501,18 @@
                     </div>
                 </div>
             </div>
+
+
+</div>
+
         </div>
     </div>
     <!-- End Blog  -->
+
+
+
+
+    
 
 
     <!-- Start Instagram Feed  -->
@@ -685,6 +710,9 @@
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
+    <!--
+    <script src="js/ajax-utils.js"></script>
+    <script src="js/script.js"></script> 
 </body>
 
 </html>
