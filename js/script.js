@@ -6,6 +6,8 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
   });
 
  window.display=0;
+ window.global_min_price;
+ window.global_max_price;
 });
 
 $(document).ready(function()
@@ -222,6 +224,8 @@ function Display_Products_GridView(myJson)
 {
 	var i=0;
 	var item='';
+	var min_price = Number.POSITIVE_INFINITY;
+	var max_price = 0;
 	for (i=0; i< myJson.Products.length; i++)
     {
         item += '<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">'+
@@ -246,8 +250,18 @@ function Display_Products_GridView(myJson)
                     '</div>'+
                 '</div>'+
             '</div>';
-    }                                            
+
+            if(parseInt(myJson.Products[i].new_cost) < min_price)
+            	min_price = parseInt(myJson.Products[i].new_cost);
+            if(parseInt(myJson.Products[i].new_cost) > max_price)
+            	max_price = parseInt(myJson.Products[i].new_cost);
+
+    }     
     document.querySelector("#dyn_1").innerHTML = item;
+    /*
+    var percent = (max_price/window.global_max_price)*100;
+    document.querySelector("#slider-range-new").value = percent; 
+    */  
 }
 
 
@@ -255,6 +269,8 @@ function Display_Products_ListView(myJson)
 {
 	var i=0;
 	var item='';
+	var min_price = Number.POSITIVE_INFINITY;
+	var max_price = 0;
 	for (i=0; i< myJson.Products.length; i++)
     {
         item += '<div class="list-view-box">'+
@@ -287,8 +303,17 @@ function Display_Products_ListView(myJson)
                 '</div>'+
             '</div>'+
         '</div>';
+
+        if(parseInt(myJson.Products[i].new_cost) < min_price)
+            	min_price = parseInt(myJson.Products[i].new_cost);
+        if(parseInt(myJson.Products[i].new_cost) > max_price)
+            	max_price = parseInt(myJson.Products[i].new_cost);
     }                                            
     document.querySelector("#list-view").innerHTML = item;
+    /*
+    var percent = (max_price/window.global_max_price)*100;
+    document.querySelector("#slider-range-new").value = percent; 
+	*/
 }
 
 function Display_Product_Type_TreeView(myJson)
@@ -375,19 +400,21 @@ function Display_Product_Type_TreeView(myJson)
 	    /* Displaying specific product type of the state along with its counters.*/
 	    for(a=0; a<TypeCounter; a++)
 	    { 
-	    item += '<a href="#" onclick="Filter_Products_By_Product_Type('+StateProductType[a].Product_Type_Code+')" class="list-group-item list-group-item-action">'+ /* active goes in this class*/
+	    item += '<a href="#" id="sub-men-child'+StateProductType[a].Product_Type_Code+'" class="list-group-item list-group-item-action" onclick="Filter_Products_By_Product_Type('+StateProductType[a].Product_Type_Code+')">'+ /* active goes in this class*/
 	        StateProductType[a].Product_Type+'<small class="text-muted">('+StateProductType[a].Product_Number+')</small></a>';  
 	    }      
 
 	    item +='</div></div></div>';    
     }                                 
     document.querySelector("#list-group-men").innerHTML = item;
+    
 } 
 
 function Filter_Products_By_All_States()
 {
 window.display=0;
 /*alert("Display status ="+window.display);*/
+Category_Tree_Traverser_Make_Inactive();
 var xmlhttp = new XMLHttpRequest();
 var i;
 var j;
@@ -429,7 +456,7 @@ xmlhttp.send();
 
 }
 
-
+/*
 function Filter_Products_By_state_code(value)
 {
 var xmlhttp = new XMLHttpRequest();
@@ -460,18 +487,135 @@ xmlhttp.open("GET", "json/Product_json.txt", true);
 xmlhttp.send();
 
 }
+*/
+
+function Category_Tree_Traverser_Find_Active_Id()
+{
+	var i,j;
+	var id=0;
+	var Base_element = document.querySelector("#list-group-men")
+	var Base_Children_Count = Base_element.children.length;
+	var First_Level_Children = Base_element.children;
+	for(i=0; i<Base_Children_Count; i++)
+	{
+		
+		var Second_Level_Children = First_Level_Children[i].children;
+
+		var Third_Level_Children = Second_Level_Children[1].children;
+
+		var Fourth_Level_Children = Third_Level_Children[0].children;
+
+		
+		if(Fourth_Level_Children[0] != undefined)
+		{
+			var Our_Element = Fourth_Level_Children[0];
+
+			var elem_id='#'+Our_Element.id;
+
+			if(document.querySelector(elem_id).classList.contains('active') == true)
+			{
+				id=elem_id;
+			}
+		}
+				
+	}
+	return(id);
+}
+
+function Category_Tree_Traverser_copy()
+{
+	var i,j;
+	var Base_element = document.querySelector("#list-group-men")
+	var Base_Children_Count = Base_element.children.length;
+	var First_Level_Children = Base_element.children;
+	for(i=0; i<Base_Children_Count; i++)
+	{
+		
+		var Second_Level_Children = First_Level_Children[i].children;
+
+		var Third_Level_Children = Second_Level_Children[1].children;
+
+		var Fourth_Level_Children = Third_Level_Children[0].children;
+
+		
+		if(Fourth_Level_Children[0] != undefined)
+		{
+			var Our_Element = Fourth_Level_Children[0];
+			console.log(Our_Element);
+
+			var id='#'+Our_Element.id;
+			console.log("Id ="+id);
+
+			console.log(document.querySelector(id).classList.contains('active')); 
+			console.log(document.querySelector(id).className); 
+
+			if(document.querySelector(id).classList.contains('active') == true)
+			{
+				console.log("Found");
+			}
+			else
+				console.log("Not Found");
+		}
+				
+	}
+	
+}
+
+
+
+function Category_Tree_Traverser_Make_Inactive()
+{
+	var i,j;
+	var Base_element = document.querySelector("#list-group-men")
+	var Base_Children_Count = Base_element.children.length;
+	var First_Level_Children = Base_element.children;
+	for(i=0; i<Base_Children_Count; i++)
+	{
+		
+		var Second_Level_Children = First_Level_Children[i].children;
+
+		var Third_Level_Children = Second_Level_Children[1].children;
+
+		var Fourth_Level_Children = Third_Level_Children[0].children;
+
+		
+		if(Fourth_Level_Children[0] != undefined)
+		{
+			var Our_Element = Fourth_Level_Children[0];
+
+			var id='#'+Our_Element.id;
+
+			if(document.querySelector(id).classList.contains('active') == true)
+			{
+				document.querySelector(id).className = "list-group-item list-group-item-action"; 
+			} 
+			
+
+			
+		}
+				
+	}
+	
+}
+
 
 
 function Filter_Products_By_Product_Type(value)
 {
-window.display = parseInt(value);
-/*alert("Display status ="+window.display);*/
-
 var xmlhttp = new XMLHttpRequest();
 var i;
 var j;
 var temp;
 var myJson;
+window.display = parseInt(value);
+
+Category_Tree_Traverser_Make_Inactive();
+
+var element_id = "#sub-men-child"+value;
+document.querySelector(element_id).className = "list-group-item list-group-item-action active";
+
+/*Category_Tree_Traverser();*/
+
 xmlhttp.onreadystatechange = function() { 
   if (this.readyState == 4 && this.status == 200) {
     myJson = JSON.parse(this.responseText);
@@ -590,3 +734,226 @@ function SelectObjectsBy_Product_Type_Code(myObjectArray,value)
 	else
 		return null;
 }
+
+function filter_low2high()
+{
+	var high_value = document.getElementById("slider-range-new").value;
+	var options = document.getElementById("basic").value;
+	var Product_Type_Id = String(Category_Tree_Traverser_Find_Active_Id());
+
+	var Selected_Product_type_Code = Product_Type_Id.slice(14);
+	var xmlhttp = new XMLHttpRequest();
+	var i;
+	var j;
+	var temp;
+	var myJson;
+	xmlhttp.onreadystatechange = function() { 
+	  if (this.readyState == 4 && this.status == 200) {
+	    myJson = JSON.parse(this.responseText);
+
+	    /************************CATEGORY WISE FILTER **********************************************/
+	    if(parseInt(Product_Type_Id) != 0)
+	    {
+		    var myNewJson = {"Products":[] };
+			var counter =0;
+			    for(i=0; i<myJson.Products.length; i++)
+			    {
+			    	if(parseInt(myJson.Products[i].Product_Type_Code) == parseInt(Selected_Product_type_Code))
+			    	{
+			    		myNewJson.Products[counter] = myJson.Products[i];
+			    		counter++;
+			    	}
+			    }
+			myJson = myNewJson;
+		}		    
+
+		/******************************************************************************/
+
+		/************************COST WISE FILTER **********************************************/
+	    
+	    var mySecondJson = {"Products":[] };
+		var counter =0;
+		    for(i=0; i<myJson.Products.length; i++)
+		    {
+		    	if(parseInt(myJson.Products[i].new_cost) <= parseInt(high_value))
+		    	{
+		    		mySecondJson.Products[counter] = myJson.Products[i];
+		    		counter++;
+		    	}
+		    }
+		myJson = mySecondJson;
+				    
+
+		/******************************************************************************/
+		/*************** Sorting Routine ******************************/
+	    for (i=0; i< myJson.Products.length; i++)
+	        for (j=0; j< myJson.Products.length; j++)
+		    {
+		        var i_num = parseInt(myJson.Products[i].new_cost);
+		        var j_num = parseInt(myJson.Products[j].new_cost);
+		        
+		        if(parseInt(options)=='2')
+		        {
+			        if(i_num > j_num)
+			        {
+			            
+			            temp = myJson.Products[i];
+			            myJson.Products[i] = myJson.Products[j];
+			            myJson.Products[j] = temp;
+			        }
+		    	}
+		    	if(parseInt(options)=='3')
+		        {
+			        if(i_num < j_num)
+			        {
+			            
+			            temp = myJson.Products[i];
+			            myJson.Products[i] = myJson.Products[j];
+			            myJson.Products[j] = temp;
+			        }
+		    	}
+		    }
+    /*****************************************************************/
+		    
+	    Display_Products_GridView(myJson); 
+	    Display_Products_ListView(myJson);    
+	  }
+	};
+	xmlhttp.open("GET", "json/Product_json.txt", true);
+	xmlhttp.send();
+
+
+}
+
+
+function filter_high2low()
+{
+	var low_value = document.getElementById("slider-range-new").value;
+	var options = document.getElementById("basic").value;
+	var Product_Type_Id = String(Category_Tree_Traverser_Find_Active_Id());
+
+	var Selected_Product_type_Code = Product_Type_Id.slice(14);
+	var xmlhttp = new XMLHttpRequest();
+	var i;
+	var j;
+	var temp;
+	var myJson;
+	xmlhttp.onreadystatechange = function() { 
+	  if (this.readyState == 4 && this.status == 200) {
+	    myJson = JSON.parse(this.responseText);
+
+	    /************************CATEGORY WISE FILTER **********************************************/
+	    if(parseInt(Product_Type_Id) != 0)
+	    {
+		    var myNewJson = {"Products":[] };
+			var counter =0;
+			    for(i=0; i<myJson.Products.length; i++)
+			    {
+			    	if(parseInt(myJson.Products[i].Product_Type_Code) == parseInt(Selected_Product_type_Code))
+			    	{
+			    		myNewJson.Products[counter] = myJson.Products[i];
+			    		counter++;
+			    	}
+			    }
+			myJson = myNewJson;
+		}		    
+
+		/******************************************************************************/
+
+		/************************COST WISE FILTER **********************************************/
+	    
+	    var mySecondJson = {"Products":[] };
+		var counter =0;
+		    for(i=0; i<myJson.Products.length; i++)
+		    {
+		    	if(parseInt(myJson.Products[i].new_cost) >= parseInt(low_value))
+		    	{
+		    		mySecondJson.Products[counter] = myJson.Products[i];
+		    		counter++;
+		    	}
+		    }
+		myJson = mySecondJson;
+				    
+
+		/******************************************************************************/
+		/*************** Sorting Routine ******************************/
+	    for (i=0; i< myJson.Products.length; i++)
+	        for (j=0; j< myJson.Products.length; j++)
+		    {
+		        var i_num = parseInt(myJson.Products[i].new_cost);
+		        var j_num = parseInt(myJson.Products[j].new_cost);
+		        
+		        if(parseInt(options)=='2')
+		        {
+			        if(i_num > j_num)
+			        {
+			            
+			            temp = myJson.Products[i];
+			            myJson.Products[i] = myJson.Products[j];
+			            myJson.Products[j] = temp;
+			        }
+		    	}
+		    	if(parseInt(options)=='3')
+		        {
+			        if(i_num < j_num)
+			        {
+			            
+			            temp = myJson.Products[i];
+			            myJson.Products[i] = myJson.Products[j];
+			            myJson.Products[j] = temp;
+			        }
+		    	}
+		    }
+    /*****************************************************************/
+		    
+	    Display_Products_GridView(myJson); 
+	    Display_Products_ListView(myJson);    
+	  }
+	};
+	xmlhttp.open("GET", "json/Product_json.txt", true);
+	xmlhttp.send();
+
+
+}
+
+function search_product()
+{
+	var search_value = String(document.getElementById("search_bar").value).toLowerCase();
+	var xmlhttp = new XMLHttpRequest();
+	var i;
+	var myJson;
+	xmlhttp.onreadystatechange = function() { 
+	  if (this.readyState == 4 && this.status == 200) {
+	    myJson = JSON.parse(this.responseText);
+
+	    
+		/************************PRODUCT NAME WISE FILTER **********************************************/
+	    
+	    var mySecondJson = {"Products":[] };
+		var counter =0;
+		    for(i=0; i<myJson.Products.length; i++)
+		    {
+		    	var prod_string= String(myJson.Products[i].Product).toLowerCase();
+		    	if(prod_string.search(search_value) != -1) 
+		    	{
+		    		mySecondJson.Products[counter] = myJson.Products[i];
+		    		counter++;
+		    	}
+		    }
+		myJson = mySecondJson;
+				    
+
+		/******************************************************************************/
+		
+		    
+	    Display_Products_GridView(myJson); 
+	    Display_Products_ListView(myJson);    
+	  }
+	};
+	xmlhttp.open("GET", "json/Product_json.txt", true);
+	xmlhttp.send();
+
+}
+
+/***************************************************************************************************************************/
+

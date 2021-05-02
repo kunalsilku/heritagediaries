@@ -330,8 +330,8 @@
                     <div class="product-categori">
                         <div class="search-product">
                             <form action="#">
-                                <input class="form-control" placeholder="Search here..." type="text">
-                                <button type="submit"> <i class="fa fa-search"></i> </button>
+                                <input class="form-control" placeholder="Product Name.." type="text" id="search_bar">
+                                <button type="submit" onclick="search_product()"> <i class="fa fa-search"></i> </button>
                             </form>
                         </div>
                         <div class="filter-sidebar-left">
@@ -360,11 +360,67 @@
                             <div class="title-left">
                                 <h3>Price</h3>
                             </div>
+                            <p>
+                                <span id="slider_min_value"></span>
+                                <span id="slider_dynamic_value"></span>
+                                <span id="slider_max_value"></span>
+                            </p>
+                            <!--
+                            <p>
+                                <span id="slider_dynamic_value"></span>
+                            </p>
+                        -->
                             <div class="price-box-slider">
-                                <div id="slider-range"></div>
+                                <input type="range" min="" max="" value="" id="slider-range-new" class="slider">
+                                <script>                                                                                               
+                                        var xmlhttp = new XMLHttpRequest();
+                                        var item='';
+                                        var myJson;
+                                        var min_price = Number.POSITIVE_INFINITY;
+                                        var max_price = 0;
+                                        xmlhttp.onreadystatechange = function() {
+                                          if (this.readyState == 4 && this.status == 200) {
+                                            myJson = JSON.parse(this.responseText);
+                                            
+                                            for (i=0; i< myJson.Products.length; i++)
+                                                {
+                                                    if(parseInt(myJson.Products[i].new_cost) < min_price)
+                                                        min_price = parseInt(myJson.Products[i].new_cost);
+                                                    if(parseInt(myJson.Products[i].new_cost) > max_price)
+                                                        max_price = parseInt(myJson.Products[i].new_cost);
+
+                                                }   
+                                                window.global_min_price = min_price;
+                                                window.global_max_price = max_price;
+                                                /*
+                                                document.querySelector("#slider-range-new").min = '"'+min_price+'"';
+                                                document.querySelector("#slider-range-new").max = '"'+max_price+'"';
+                                                */
+                                                document.querySelector("#slider-range-new").min = min_price;
+                                                document.querySelector("#slider-range-new").max = max_price;
+                                                document.querySelector("#slider-range-new").value = max_price;
+
+                                                document.querySelector("#slider_min_value").innerHTML = document.querySelector("#slider-range-new").min;
+                                                document.querySelector("#slider_max_value").innerHTML = document.querySelector("#slider-range-new").max;
+                                                document.querySelector("#slider_dynamic_value").innerHTML = document.querySelector("#slider-range-new").value;                                            
+                                          }
+                                        };                                        
+                                        xmlhttp.open("GET", "json/Product_json.txt", true);
+                                        xmlhttp.send();
+                                    </script> 
+                                    <script>
+                                        var slider = document.getElementById("slider-range-new");
+                                        var output = document.getElementById("slider_dynamic_value");
+                                        output.innerHTML = slider.value;
+                                                                                
+                                        slider.oninput = function() {
+                                          output.innerHTML = this.value;
+                                        }
+
+                                    </script>
                                 <p>
-                                    <input type="text" id="amount" readonly style="border:0; color:#fbb714; font-weight:bold;">
-                                    <button class="btn hvr-hover" type="submit">Filter</button>
+                                    <button id="slider_filter_btn_1" class="btn hvr-hover" type="submit" onclick="filter_low2high()">Low->High</button>
+                                    <button id="slider_filter_btn_2" class="btn hvr-hover" type="submit" onclick="filter_high2low()">High->Low</button>
                                 </p>
                             </div>
                         </div>
