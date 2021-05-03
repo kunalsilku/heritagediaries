@@ -34,7 +34,7 @@
     <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/ajax-utils.js"></script>
-    <script src="js/script.js"></script> 
+    <script src="js/script_HeritageStore.js"></script> 
     <script>
         /*
         $(document).ready(function()
@@ -253,24 +253,7 @@
 								</select>
                                 
                                 </div >
-                                    <p id="list_no">
-                                    <script>                                                                                               
-                                        var xmlhttp = new XMLHttpRequest();
-                                        var item='';
-                                        var myJson;
-                                        
-                                        xmlhttp.onreadystatechange = function() {
-                                          if (this.readyState == 4 && this.status == 200) {
-                                            myJson = JSON.parse(this.responseText);
-                                            
-                                            item ='Showing all <strong>'+ myJson.Products.length +'</strong> results';                                               
-                                            document.querySelector("#list_no").innerHTML = item;                                            
-                                          }
-                                        };                                        
-                                        xmlhttp.open("GET", "json/Product_json.txt", true);
-                                        xmlhttp.send();
-                                    </script>
-                                </p>
+                                    <p id="list_no"></p>
                             </div>
                             <div class="col-12 col-sm-4 text-center text-sm-right">
                                 <ul class="nav nav-tabs ml-auto">
@@ -285,8 +268,7 @@
                         </div>
 
                         <div class="product-categorie-box">
-                            <div class="tab-content">
-                                <!--<div role="tabpanel" class="tab-pane fade show active" id="grid-view">-->
+                            <div class="tab-content">                                
                                 <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
                                     <div class="row" id="dyn_1">
                                         <script>
@@ -297,7 +279,9 @@
                                               if (this.readyState == 4 && this.status == 200) {
                                                 myJson = JSON.parse(this.responseText);
 
-                                            Display_Products_GridView(myJson); 
+                                            window.myJson = myJson;
+                                            window.PRODUCTS_PER_PAGE=12;                                            
+                                            Display_Products(myJson); 
                                               }
                                             };
                                             xmlhttp.open("GET", "json/Product_json.txt", true);
@@ -307,20 +291,7 @@
                                   
                                     </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane fade " id="list-view">
-                                    <script>
-                                        var xmlhttp = new XMLHttpRequest();
-                                            var myJson;
-                                            xmlhttp.onreadystatechange = function() {
-                                              if (this.readyState == 4 && this.status == 200) {
-                                                myJson = JSON.parse(this.responseText);
-
-                                            Display_Products_ListView(myJson); 
-                                              }
-                                            };
-                                            xmlhttp.open("GET", "json/Product_json.txt", true);
-                                            xmlhttp.send();
-                                    </script>                                    
+                                <div role="tabpanel" class="tab-pane fade " id="list-view">                                                 
                                 </div>
                             </div>
                         </div>
@@ -365,11 +336,7 @@
                                 <span id="slider_dynamic_value"></span>
                                 <span id="slider_max_value"></span>
                             </p>
-                            <!--
-                            <p>
-                                <span id="slider_dynamic_value"></span>
-                            </p>
-                        -->
+                            
                             <div class="price-box-slider">
                                 <input type="range" min="" max="" value="" id="slider-range-new" class="slider">
                                 <script>                                                                                               
@@ -392,10 +359,7 @@
                                                 }   
                                                 window.global_min_price = min_price;
                                                 window.global_max_price = max_price;
-                                                /*
-                                                document.querySelector("#slider-range-new").min = '"'+min_price+'"';
-                                                document.querySelector("#slider-range-new").max = '"'+max_price+'"';
-                                                */
+                                                
                                                 document.querySelector("#slider-range-new").min = min_price;
                                                 document.querySelector("#slider-range-new").max = max_price;
                                                 document.querySelector("#slider-range-new").value = max_price;
@@ -407,8 +371,7 @@
                                         };                                        
                                         xmlhttp.open("GET", "json/Product_json.txt", true);
                                         xmlhttp.send();
-                                    </script> 
-                                    <script>
+                                    
                                         var slider = document.getElementById("slider-range-new");
                                         var output = document.getElementById("slider_dynamic_value");
                                         output.innerHTML = slider.value;
@@ -428,15 +391,7 @@
                 </div>
             </div>
 
-            <div class="pagination">
-              <a href="#">&laquo;</a>
-              <a href="#">1</a>
-              <a class="active" href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <a href="#">5</a>
-              <a href="#">6</a>
-              <a href="#">&raquo;</a>
+            <div class="pagination" id="pagination_1">                
             </div>
 
         </div>
@@ -638,8 +593,7 @@
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
-    <script src="js/ajax-utils.js"></script>
-    <script src="js/script.js"></script> 
+    
 </body>
 
 </html>

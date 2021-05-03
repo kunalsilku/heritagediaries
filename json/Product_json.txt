@@ -3,9 +3,9 @@
         {
             "state": "Andhra",
             "state_code": "1",
-            "Product_Type": "Leather Puppetry",
+            "Product_Type": "Andhra Jewellery",
             "Product_Type_Code": "1",
-            "Product": "prod 1",
+            "Product": "Necklace",
             "Product_Code": "PDR03",
             "image_url": "images/Products/in_1.jpg",
             "sale_new": "sale",
