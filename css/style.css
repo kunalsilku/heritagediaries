@@ -2691,6 +2691,15 @@
      color: #ffffff;
      border: none;
 }
+#View_Blog{
+     padding: 10px 20px;
+     font-weight: 700;
+     background-color: grey;
+     color: #ffffff;
+     border: none;
+     float:right;
+}
+
  .add-to-btn .add-comp {
      float: left;
 }

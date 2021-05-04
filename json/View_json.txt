@@ -1,0 +1,24 @@
+﻿{
+    "View_Product": [
+        {
+            "state": "Andhra Pradesh",
+            "state_code": "1",
+            "Product_Type": "Guntur Sannam Chilli",
+            "Product_Type_Code": "AP_1",
+            "Product": "Ashok Red Chilli",
+            "Product_Code": "AP_1_1",
+            "image_url_1": "images/Heritage_Product/Andhra_Pradesh/Agriculture/Guntur_Sannam_Chili/Detail/img_1.jpg",
+            "image_url_2": "images/Heritage_Product/Andhra_Pradesh/Agriculture/Guntur_Sannam_Chili/Detail/img_2.jpg",
+            "image_url_3": "images/Heritage_Product/Andhra_Pradesh/Agriculture/Guntur_Sannam_Chili/Detail/img_3.jpg",
+            "small_image_url_1": "images/Heritage_Product/Andhra_Pradesh/Agriculture/Guntur_Sannam_Chili/Detail/s_img_1.jpg",
+            "small_image_url_2": "images/Heritage_Product/Andhra_Pradesh/Agriculture/Guntur_Sannam_Chili/Detail/s_img_2.jpg",
+            "small_image_url_3": "images/Heritage_Product/Andhra_Pradesh/Agriculture/Guntur_Sannam_Chili/Detail/s_img_3.jpg",
+            "sale_new": "new",
+            "quantity": "20",
+            "old_cost": "200",
+            "new_cost": "180",
+            "small_brief": "The small brief section is currently not written. It will be updated very soon. Uptill that time feel free to read our blogs. You will lot of information in our blog section. so happy surfing."
+        }
+        
+    ]
+}

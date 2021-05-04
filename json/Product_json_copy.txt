@@ -1,0 +1,56 @@
+﻿{
+    "Products": [
+        {
+            "state": "Andhra",
+            "state_code": "1",
+            "Product_Type": "Andhra Jewellery",
+            "Product_Type_Code": "1",
+            "Product": "Necklace",
+            "Product_Code": "PDR03",
+            "image_url": "images/blog_img_1.jpg",
+            "sale_new": "sale",
+            "old_cost": "2000",
+            "new_cost": "1800",
+            "small_brief": "The small brief section is currently not written. It will be updated very soon. Uptill that time feel free to read our blogs. You will lot of information in our blog section. so happy surfing."
+        },
+        {
+            "state": "UP",
+            "state_code": "26",
+            "Product_Type": "Chikan Work",
+            "Product_Type_Code": "11",
+            "Product": "prod 567",
+            "Product_Code": "PDR 78",
+            "image_url": "images/blog_img_1.jpg",
+            "sale_new": "new",
+            "old_cost": "5000",
+            "new_cost": "4500",
+            "small_brief": "The small brief section is currently not written. It will be updated very soon. Uptill that time feel free to read our blogs. You will lot of information in our blog section. so happy surfing."
+        },
+        {
+            "state": "Bihar",
+            "state_code": "4",
+            "Product_Type": "Madhubani Art",
+            "Product_Type_Code": "2",
+            "Product": "ag prod",
+            "Product_Code": "PDR 890",
+            "image_url": "images/blog_img_1.jpg",
+            "sale_new": "new",
+            "old_cost": "500",
+            "new_cost": "470",
+            "small_brief": "The small brief section is currently not written. It will be updated very soon. Uptill that time feel free to read our blogs. You will lot of information in our blog section. so happy surfing."
+        },
+        {
+            "state": "UP",
+            "state_code": "26",
+            "Product_Type": "Glass Work",
+            "Product_Type_Code": "11",
+            "Product": "Tea",
+            "Product_Code": "PDR 7",
+            "image_url": "images/blog_img_1.jpg",
+            "sale_new": "sale",
+            "old_cost": "3000",
+            "new_cost": "2800",
+            "small_brief": "The small brief section is currently not written. It will be updated very soon. Uptill that time feel free to read our blogs. You will lot of information in our blog section. so happy surfing."
+        }
+    ]
+}
